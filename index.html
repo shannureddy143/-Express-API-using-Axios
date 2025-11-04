@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Axios + Express Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Connect Frontend to Express API using Axios</h2>
+    <button onclick="getData()">Fetch Data</button>
+    <p id="output"></p>
+  </div>
+
+  <!-- Axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    function getData() {
+      // Fetch data from Express backend
+      axios.get('http://localhost:5000/api/data')
+        .then(response => {
+          document.getElementById('output').innerText = response.data.message;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('output').innerText = '❌ Failed to fetch data.';
+        });
+    }
+  </script>
+</body>
+</html>
